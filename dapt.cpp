@@ -11,17 +11,18 @@ using namespace std;
 
 int main(int argc, char** argv){
     int pac = argc;
-    cout << "Você passou " << --pac << " pacotes" << endl;
+    cout << --pac << " packages. Installing ..." << endl;
     if (argc > 1) {
-        system((string("sudo dpkg -i ") + argv[1]).c_str());
-        system("sudo apt install -f -y");
+        for (int c = 1; c < argc; c++) {
+            cout << (string("Installing package: ") + argv[c]).c_str() << endl;
+            system((string("sudo dpkg -i ") + argv[c]).c_str());
+            system("sudo apt install -f -y");
+        }
     }
     system("clear");
-    system("echo Obrigado $USER por usar o dapt!\n");
+    system("echo Thank you $USER for running dapt!\n");
     /*for (int c = 0; c < argc; ++c) {
         cout << argv[c] << endl;
     }*/
     return 0;
 }
-
-
